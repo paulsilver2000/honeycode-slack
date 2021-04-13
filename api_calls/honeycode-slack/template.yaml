@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  honeycode-slack
+
+  Sample SAM Template for honeycode-slack
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  SlackHoneyCodeFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: slackHoneyCode/
+      Handler: lambda.lambda_handler
+      Runtime: python3.7
+      Policies:
+      # Give Honeycode read Access to your Lambda Function
+      - AmazonHoneycodeWorkbookReadOnlyAccess
+      - AmazonHoneycodeReadOnlyAccess
+      Environment:
+        Variables:
+          workbookId: 'Replace Me'
+          slackchannelToken: 'Replace Me'
+          channel: 'honeycode'
+      Events:
+        SlackHoneyCode:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /honeycode_slack
+            Method: post
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  SlackHoneyCodeApi:
+    Description: "API Gateway endpoint URL for Prod stage for HoneyCode Slack function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/honeycode_slack/"
+  SlackHoneyCodeFunction:
+    Description: "HoneyCode Slack function Lambda Function ARN"
+    Value: !GetAtt SlackHoneyCodeFunction.Arn
+  SlackHoneyCodeFunctionIamRole:
+    Description: "Implicit IAM Role created for Honeycode function"
+    Value: !GetAtt SlackHoneyCodeFunctionRole.Arn
