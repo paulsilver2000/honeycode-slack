@@ -140,3 +140,6 @@ Remove the cloud9 environment
 Delete the cloudformation SAM stack you created
 Delete the slack channel
 Delete the honeycode account
+
+Interested in the mentor or learning more, go here: 
+![mentor](/images/DevAx.png)
