@@ -21,4 +21,4 @@ You will be directed on your web browser to https://builder.honeycode.aws/ and l
 
 You are now ready to start no-code with Honeycode.
 
-Now let's create a Slack account [click here to continue](01_create_slack_channel/README.md)
+Now let's create a Slack account [click here to continue](/01_create_slack_channel/README.md)
