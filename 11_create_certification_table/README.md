@@ -6,7 +6,7 @@ To create the certification table, on your "My Drive" click on certifications an
 
 ![Create workbook](/images/table1.png)
 
-Add the requied columns, changing column1,2,3 and add the additional columns. 
+Add the required columns, changing column1,2,3 and add the additional columns. 
 
 Change the table to look like the following: 
 |Current   |New value  |
